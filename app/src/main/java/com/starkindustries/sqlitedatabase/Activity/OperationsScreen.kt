@@ -15,7 +15,6 @@ import com.starkindustries.sqlitedatabase.DataBase.StudentDatabase
 import com.starkindustries.sqlitedatabase.Keys.Keys
 import com.starkindustries.sqlitedatabase.R
 import com.starkindustries.sqlitedatabase.databinding.ActivityOperationsScreenBinding
-
 class OperationsScreen : AppCompatActivity() {
     lateinit var binding:ActivityOperationsScreenBinding
     lateinit var dbHandler: StudentDatabase
@@ -27,6 +26,7 @@ class OperationsScreen : AppCompatActivity() {
         dbHandler=StudentDatabase(applicationContext, Keys.DATABASE_NAME,Keys.VERSION)
         dbHandler.getCount()
         Log.d("nameCheck","The name is:"+dbHandler.getName("2021FHCO042"))
+        Log.d("login","The loogin is: ${dbHandler.login("2021FHCO042","Aditya@1234")}")
         binding.insertData.setOnClickListener()
         {
             var inext = Intent(applicationContext,InsertActivity::class.java)

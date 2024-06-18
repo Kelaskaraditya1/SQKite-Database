@@ -96,4 +96,15 @@ class StudentDatabase(var context_: Context,var dbName:String,var version:Int): 
             cursor.moveToFirst()
         return cursor.getString(1)
     }
+    fun login(sid:String,password:String):Boolean
+    {
+        var db:SQLiteDatabase = this.writableDatabase
+        var cursor:Cursor = db.query(Keys.STUDENTS_TABLE, arrayOf<String>(Keys.SID,Keys.NAME,Keys.DEPARTMENT,Keys.EMAIL,Keys.USERNAME,Keys.PASSWORD),
+            Keys.SID+"=?"+" and "+Keys.PASSWORD+"=?", arrayOf<String>(sid,password),null,null,null)
+        if((cursor!=null)&&(cursor.count!=0)&&(cursor.moveToNext()))
+            return true
+        else
+            return false
+    }
+
 }
